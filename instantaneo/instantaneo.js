@@ -136,8 +136,7 @@ function DifficultyManager (  )	{
 	this.consecSuccess = 0;
 	this.consecFailure = 0;
     }
-    // this.maxGameCount = 20;
-    this.maxGameCount = 3;
+    this.maxGameCount = 20;
     this.gameCountCheck = function(level){
 	this.gameCount++;
 	return this.gameCount>this.maxGameCount? null: level;
