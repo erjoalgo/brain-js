@@ -1,5 +1,5 @@
-var successAudio = new Audio("/sounds/success_beep.wav");
-var failAudio = new Audio("/sounds/error_beep.wav");
+var successAudio = new Audio("../sounds/success_beep.wav");
+var failAudio = new Audio("../sounds/error_beep.wav");
 
 function Game ( difficultyManager )	{
     this.cells = null;
@@ -114,8 +114,9 @@ function DifficultyManager (  )	{
     }
     this.start = function(){return 5;}
     this.failureDelay = 2000;//this is a penality. user does not like to wait
-    this.successDelay = 1500;//based on original "grandmother" settings. but it is too slow
-    this.displayTime = 1000;
+    this.successDelay = 200;//based on original "grandmother" settings. but it is too slow
+    // this.displayTime = 1000;
+    this.displayTime = 500;
     this.gameCount = 0;
 
     //now some internal variables/state
