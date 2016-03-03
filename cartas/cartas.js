@@ -185,7 +185,7 @@ function Game ( difficultyManager, imageSrcs )	{
 }
 function DifficultyManager (  )	{
     this.rows = 4;
-    this.cols = 4;
+    this.cols = 5;
     this.failDelay = 250;
     this.successDelay = 1000;//does not lock the game
     this.mistakesAllowed = this.rows*this.cols*1.5;
