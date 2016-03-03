@@ -63,7 +63,7 @@ function sleep ( ms )	{
 function formatSecs ( secs )	{
     var mins = Math.floor(secs/60);
     var secs = secs%60;
-    return mins+":"+secs;
+    return mins+":"+(secs<10? "0":"")+secs;
 }
 function Game ( difficultyManager )	{
     this.setupAndStart = function(nTiles){
@@ -158,7 +158,7 @@ function DifficultyManager (  )	{
     this.start = 1;
     this.nTiles = this.start;
     // this.totalSecs = 15;
-    this.totalSecs = 60*2.5;
+    this.totalSecs = 60*2;
 }
 var inputBox = document.getElementById("inputBox");
 var table = document.createElement("table");
