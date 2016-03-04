@@ -182,7 +182,12 @@ function getActivateCells ( n, parentTable )	{
     table.align = "center";
     // table.style="margin: 0px auto;";
     // var dims = getDims(n);
-    var [rows, cols] = getDims(n);
+    
+    // var [rows, cols] = getDims(n); only firefox supports this
+    var rowsCols = getDims(n);
+    var rows = rowsCols[0];
+    var cols = rowsCols[1];
+    
     var cells = new Array(n);
     var i = 0;
     for (var r = 0; r<rows && i<n; r++)	{
