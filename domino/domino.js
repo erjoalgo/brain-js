@@ -84,7 +84,10 @@ function Game ( difficultyManager )	{
 		tilesRow.appendChild(td);
 	    }
 	    this.currTotal = total;
-	    inputBox.select();
+	    
+	    // inputBox.select();
+	    inputBox.value = "";
+	    inputBox.focus();
 	}
     }
 
@@ -96,7 +99,7 @@ function Game ( difficultyManager )	{
 
     var self = this;
     inputBox.onkeydown = function(event){
-	if (event.keyCode==13) {
+	if (event.keyCode==13 || event.keyCode == 9) {
 	    var number = parseInt(inputBox.value);
 	    if (isNaN(number) || number-Math.floor(number) != 0)	{
 		alert("bad input: "+number);
@@ -152,8 +155,9 @@ function DifficultyManager (  )	{
 	}
 	return this.nTiles;
     }
+    this.consecCorrect = 0;
     this.correctDelay = 0;
-    this.failDelay = 1000;
+    this.failDelay = 0;
     // this.failDelay = 50;
     this.start = 1;
     this.nTiles = this.start;
@@ -173,3 +177,7 @@ table.appendChild(tilesRow);
 var clock = document.getElementById("clock");
 var game = new Game(new DifficultyManager());
 game.start();
+
+document.body.onload = function(){
+    inputBox.focus();
+}
