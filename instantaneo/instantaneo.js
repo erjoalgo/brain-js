@@ -180,13 +180,8 @@ function getActivateCells ( n, parentTable )	{
     }
     
     table = document.createElement("table");
-    // table.id = "grid";
-    // table.align = "center";
-    // table.style.top = "50%";
-    // table.style.left = "50%";
-    table.style.marginLeft = "auto";
-    table.style.marginRight = "auto";
-    table.style.marginTop = "auto";
+    table.align = "center";
+    
     
     
     // vertical aligning?
@@ -197,11 +192,6 @@ function getActivateCells ( n, parentTable )	{
     table.display = "table-cell";
     table.verticalAlign = "middle";
 
-    // table.style.position = "fixed";
-    // table.style.position = "fixed";
-    // table.style="margin: 0px auto;";
-    // var dims = getDims(n);
-    
     // var [rows, cols] = getDims(n); only firefox supports this
     var rowsCols = getDims(n);
     var rows = rowsCols[0];
@@ -266,14 +256,7 @@ function Cell ( parent )	{
     cell.style.width = "100px";
     cell.style.height = cell.style.width;
     cell.style.backgroundColor = "white";
-    // cell.style.outline = "none";
-    // cell.style.mozFocusInner.border = "0";
-    // cell.style["-moz-focus-inner"].border = "0";
-    // cell.style["-moz-focus-inner"] = "border:0";
     cell.style.border = "none";
-    // cell.style["-moz-focus-inner"].border = "none";
-
-    // sheet.insertRule('#elid::-moz-focus-inner {border:0;}', 0);
     if (isFirefox)	{
 	var style = document.createElement("style");
 	style.appendChild(document.createTextNode(""));
