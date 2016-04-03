@@ -1,3 +1,5 @@
+var isFirefox = typeof InstallTrigger !== 'undefined';
+
 var successAudio = new Audio("../sounds/success_beep.wav");
 var failAudio = new Audio("../sounds/error_beep.wav");
 
@@ -179,7 +181,24 @@ function getActivateCells ( n, parentTable )	{
     
     table = document.createElement("table");
     // table.id = "grid";
-    table.align = "center";
+    // table.align = "center";
+    // table.style.top = "50%";
+    // table.style.left = "50%";
+    table.style.marginLeft = "auto";
+    table.style.marginRight = "auto";
+    table.style.marginTop = "auto";
+    
+    
+    // vertical aligning?
+    var tableDiv = document.createElement("div");
+    tableDiv.display = "table";
+    tableDiv.verticalAlign = "middle";
+    
+    table.display = "table-cell";
+    table.verticalAlign = "middle";
+
+    // table.style.position = "fixed";
+    // table.style.position = "fixed";
     // table.style="margin: 0px auto;";
     // var dims = getDims(n);
     
@@ -199,7 +218,8 @@ function getActivateCells ( n, parentTable )	{
 	table.appendChild(row);
     }
     // document.lastChild.appendChild(table);
-    body.appendChild(table);
+    tableDiv.appendChild(table);
+    body.appendChild(tableDiv);
     return cells;
 }
 
@@ -239,11 +259,28 @@ function Cell ( parent )	{
 
     var cell = this.element;
 
+
+
     // cell.style.border = "1px solid #000"
     cell.style.border = "0px solid #fff";
     cell.style.width = "100px";
     cell.style.height = cell.style.width;
     cell.style.backgroundColor = "white";
+    // cell.style.outline = "none";
+    // cell.style.mozFocusInner.border = "0";
+    // cell.style["-moz-focus-inner"].border = "0";
+    // cell.style["-moz-focus-inner"] = "border:0";
+    cell.style.border = "none";
+    // cell.style["-moz-focus-inner"].border = "none";
+
+    // sheet.insertRule('#elid::-moz-focus-inner {border:0;}', 0);
+    if (isFirefox)	{
+	var style = document.createElement("style");
+	style.appendChild(document.createTextNode(""));
+	document.head.appendChild(style);
+	sheet.insertRule('::-moz-focus-inner {border:0;}', 0);
+    }
+
     
     var lab = document.createElement("label");
     cell.appendChild(lab);
@@ -251,6 +288,9 @@ function Cell ( parent )	{
     cell.style.color = "black";
     cell.style.fontSize = "30px";
     cell.style.fontWeight = "bold";
+
+    cell.style.verticalAlign = "middle";
+
 
     // cell.style.background
     
