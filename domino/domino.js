@@ -106,6 +106,7 @@ function Game ( difficultyManager )	{
 	    }else 	{
 		self.answer(number == self.currTotal);
 	    }
+	    event.preventDefault();
 	}
     }
     this.answer = function(correct){
