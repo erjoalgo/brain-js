@@ -2,6 +2,7 @@ var successAudio = new Audio("../sounds/success_beep.wav");
 var failAudio = new Audio("../sounds/error_beep.wav");
 
 var square = 100;
+var squarePercent = square+"%";
 
 var mistakesLeftLab = document.getElementById("mistakesLeftLab");
 var table = document.createElement("table");
@@ -17,13 +18,19 @@ function Cell ( imgSrc, parentTd )	{
     this.element.src = imgSrc;
     this.parentTd = parentTd;
 
-    this.element.style.width = square;
-    this.element.style.height = square;
+    this.element.style.width = squarePercent;
+    this.element.style.height = squarePercent;
 
     this.parentTd.appendChild(this.element);
     this.button = document.createElement("button");
-    this.button.style.width = square;
-    this.button.style.height = square;
+    this.button.style.width = squarePercent;
+    this.button.style.height = squarePercent;
+
+    this.button.width = squarePercent;
+    this.button.height = squarePercent;
+
+    this.parentTd.width = square;
+    this.parentTd.height = square;
     
     this.locked = false;
 }
@@ -83,6 +90,8 @@ function Game ( difficultyManager, imageSrcs )	{
 	    for (var c = 0; c<this.cols; c++)	{
 		var td = document.createElement("td");
 		td.style.border = "0px solid #fff";
+		td.style.width = square;
+		td.style.height = square;
 
 		var i = r*this.cols+c;
 		var cell = new Cell(duplicated[i], td);
