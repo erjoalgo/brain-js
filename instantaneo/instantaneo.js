@@ -261,7 +261,7 @@ function Cell ( parent )	{
 	var style = document.createElement("style");
 	style.appendChild(document.createTextNode(""));
 	document.head.appendChild(style);
-	sheet.insertRule('::-moz-focus-inner {border:0;}', 0);
+	style.sheet.insertRule('::-moz-focus-inner {border:0;}', 0);
     }
 
     
