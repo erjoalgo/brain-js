@@ -116,11 +116,12 @@ function Game ( difficultyManager )	{
 	    successAudio.play();
 	}else 	{
 	    failAudio.play();
-	    document.body.style.backgroundColor = "red"; 
+	    inputBox.style.backgroundColor = "red"; 
 	}
 	sleep(isCorrect? 0 : this.difficultyManager.failDelay).then(
 	    function(){
-		document.body.style.backgroundColor = "white";
+		inputBox.style.backgroundColor = "white"; 
+		// document.body.style.backgroundColor = "white";
 		// TODO why this error not producing log
 		// this.removeTiles();
 		self.removeTiles();
