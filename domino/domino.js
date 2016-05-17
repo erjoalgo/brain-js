@@ -110,13 +110,23 @@ function Game ( difficultyManager )	{
 	}
     }
     this.answer = function(isCorrect){
-	(isCorrect? successAudio: failAudio).play();
 	var nTiles = this.difficultyManager.answer(isCorrect);
-	this.removeTiles();
-	sleep(this.difficultyManager[isCorrect? "correctDelay": "failDelay"]).then(
+
+	if (isCorrect)	{
+	    successAudio.play();
+	}else 	{
+	    failAudio.play();
+	    document.body.style.backgroundColor = "red"; 
+	}
+	sleep(isCorrect? 0 : this.difficultyManager.failDelay).then(
 	    function(){
+		document.body.style.backgroundColor = "white";
+		// TODO why this error not producing log
+		// this.removeTiles();
+		self.removeTiles();
 		self.setupAndStart(nTiles);
-	    });
+	    }
+	);
     }
     this.difficultyManager = difficultyManager;
     this.start = function(){
@@ -158,8 +168,8 @@ function DifficultyManager (  )	{
     }
     this.consecCorrect = 0;
     this.correctDelay = 0;
-    this.failDelay = 0;
-    // this.failDelay = 50;
+    // this.failDelay = 0;
+    this.failDelay = 500;
     this.start = 1;
     this.nTiles = this.start;
     // this.totalSecs = 15;
