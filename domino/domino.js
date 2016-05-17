@@ -109,11 +109,11 @@ function Game ( difficultyManager )	{
 	    event.preventDefault();
 	}
     }
-    this.answer = function(correct){
-	(correct? successAudio: failAudio).play();
-	var nTiles = this.difficultyManager.answer(correct);
+    this.answer = function(isCorrect){
+	(isCorrect? successAudio: failAudio).play();
+	var nTiles = this.difficultyManager.answer(isCorrect);
 	this.removeTiles();
-	sleep(this.difficultyManager[correct? "correctDelay": "failDelay"]).then(
+	sleep(this.difficultyManager[isCorrect? "correctDelay": "failDelay"]).then(
 	    function(){
 		self.setupAndStart(nTiles);
 	    });
