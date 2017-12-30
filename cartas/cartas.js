@@ -7,13 +7,13 @@ var squarePercent = square+"%";
 var mistakesLeftLab = document.getElementById("mistakesLeftLab");
 var table = document.createElement("table");
 table.align = "center";
-table.style.border = "0px solid #fff";
+table.style.border = "1px solid #fff";
 
 document.body.appendChild(table);
 
 
 function Cell ( imgSrc, parentTd )	{
-    
+
     this.element = document.createElement("img");
     this.element.src = imgSrc;
     this.parentTd = parentTd;
@@ -23,6 +23,7 @@ function Cell ( imgSrc, parentTd )	{
 
     this.parentTd.appendChild(this.element);
     this.button = document.createElement("button");
+
     this.button.style.width = squarePercent;
     this.button.style.height = squarePercent;
 
@@ -31,7 +32,7 @@ function Cell ( imgSrc, parentTd )	{
 
     this.parentTd.width = square;
     this.parentTd.height = square;
-    
+
     this.locked = false;
 }
 
@@ -65,7 +66,7 @@ function Game ( difficultyManager, imageSrcs )	{
     this.imageSrcs = imageSrcs;
     this.globalLock = false;
 
-    
+
     this.pairsLeft = null;
     this.mistakesLeft = null;
     this.cells = null;
@@ -73,7 +74,7 @@ function Game ( difficultyManager, imageSrcs )	{
 	var n = this.rows*this.cols;
 	assert(n%2 == 0, "n must be even");
 	assert(this.imageSrcs.length>=n/2, "not enough images to play: "+this.imageSrcs.length);
-	
+
 	shuffle(this.imageSrcs);
 
 	this.cells = new Array(n);
@@ -86,7 +87,7 @@ function Game ( difficultyManager, imageSrcs )	{
 	shuffle(duplicated);
 	for (var r = 0; r<this.rows; r++)	{
 	    var tr = document.createElement("tr");
-	    
+
 	    for (var c = 0; c<this.cols; c++)	{
 		var td = document.createElement("td");
 		td.style.border = "0px solid #fff";
@@ -102,14 +103,14 @@ function Game ( difficultyManager, imageSrcs )	{
 		var fun = this.onclickForCell(cell);
 		// cell.element.onclick = fun;
 		cell.button.onclick = fun;
-		
+
 		cell.hide();
 		table.appendChild(tr);
 	    }
 	}
 	this.mistakesLeft = this.difficultyManager.mistakesAllowed;
 	mistakesLeftLab.innerHTML = this.mistakesLeft;
-	
+
 	this.pairsLeft = n/2;
     }
     this.onclickForCell = function(cell){
@@ -125,10 +126,10 @@ function Game ( difficultyManager, imageSrcs )	{
 		}else {
 		    var correct = selfGame.uncovered.element.src == selfCell.element.src;
 		    selfCell.show();
-		    
+
 		    var previous = selfGame.uncovered;
 		    selfGame.uncovered = null;
-		    
+
 		    previous.lock = true;
 		    selfCell.lock = true;
 
@@ -143,13 +144,13 @@ function Game ( difficultyManager, imageSrcs )	{
 			    }
 			});
 		    }else 	{
-						    			    			    
+
 
 			failAudio.play();
 
 			selfGame.mistakesLeft--;
 			updateMistakes(selfGame.mistakesLeft);
-			
+
 			if (selfGame.mistakesLeft<=0)	{
 			    selfGame.gameOver();
 			}else 	{
@@ -158,13 +159,13 @@ function Game ( difficultyManager, imageSrcs )	{
 			    sleep(selfGame.difficultyManager.failDelay).then(function(){
 				selfCell.hide();
 				previous.hide();
-				
+
 				previous.locked = false;
 				selfCell.locked = false;
 				selfGame.globalLock = false;
 			    });
 			}
-			    
+
 		    }
 		    selfGame.answer(correct);
 		}
@@ -172,15 +173,15 @@ function Game ( difficultyManager, imageSrcs )	{
 	}
     }
     this.mistake = function(){
-	
+
     }
-    
+
     this.gameOver = function(){
 	this.globalLock = true;
 	alert("game over. score: "+this.mistakesLeft);
 	this.cells.map(function(cell){cell.show()});
     }
-	
+
     this.getShuffledImgSrcs = function(n){
 	var srcs = new Array(n);
 	for (var i = 0; i<n; i++)	{
