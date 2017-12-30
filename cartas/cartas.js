@@ -255,7 +255,7 @@ GET("hard-paths").then(function(response){
     game = new Game(new DifficultyManager(), imageSrcs);
     game.start();
 }, function(err){
-    alert( "fatal: unable to read images" );
+    alert( "fatal: unable to read images (see console)" );
     console.log( err );
 });
 // document.body.bgColor = "#800000";
