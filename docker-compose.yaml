@@ -1,0 +1,7 @@
+services:
+  nginx:
+    build: .
+    healthcheck:
+      test: bash -c "exec 6<> /dev/tcp/localhost/80"
+    ports:
+      - 127.0.0.1:8081:80
