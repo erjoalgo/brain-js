@@ -1,6 +1,7 @@
 services:
   nginx:
     build: .
+    restart: always
     healthcheck:
       test: bash -c "exec 6<> /dev/tcp/localhost/80"
     ports:
